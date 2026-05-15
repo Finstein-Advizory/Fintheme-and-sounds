@@ -8,7 +8,7 @@ repos:
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        files: "finetheme_and_sound.*"
+        files: "fintheme_and_sounds.*"
         exclude: ".*json$|.*txt$|.*csv|.*md|.*svg"
       - id: check-merge-conflict
       - id: check-ast
@@ -38,11 +38,11 @@ repos:
         # Ignore any files that might contain jinja / bundles
         exclude: |
             (?x)^(
-                finetheme_and_sound/public/dist/.*|
+                fintheme_and_sounds/public/dist/.*|
                 .*node_modules.*|
                 .*boilerplate.*|
-                finetheme_and_sound/templates/includes/.*|
-                finetheme_and_sound/public/js/lib/.*
+                fintheme_and_sounds/templates/includes/.*|
+                fintheme_and_sounds/public/js/lib/.*
             )$
 
 
@@ -55,12 +55,12 @@ repos:
         # Ignore any files that might contain jinja / bundles
         exclude: |
             (?x)^(
-                finetheme_and_sound/public/dist/.*|
+                fintheme_and_sounds/public/dist/.*|
                 cypress/.*|
                 .*node_modules.*|
                 .*boilerplate.*|
-                finetheme_and_sound/templates/includes/.*|
-                finetheme_and_sound/public/js/lib/.*
+                fintheme_and_sounds/templates/includes/.*|
+                fintheme_and_sounds/public/js/lib/.*
             )$
 
 ci:

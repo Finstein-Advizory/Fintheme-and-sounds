@@ -31,7 +31,7 @@
 </table>
 <div align="center" markdown="1">
 
-# Theme Studio
+# Fintheme and Sounds
 
 Per-user theme and sound personalization for Frappe & ERPNext Desk — live color editor, curated WCAG-validated palettes, 17 bundled themes, and a Sound Studio that lets every user pick their own audio for save / submit / login / notifications and more.
 
@@ -83,7 +83,7 @@ Per-user theme and sound personalization for Frappe & ERPNext Desk — live colo
 ```bash
 cd ~/frappe-bench
 bench get-app https://github.com/Darwin-DJR-Finstein/Fintheme-and-sounds.git
-bench --site <your-site> install-app finetheme_and_sound
+bench --site <your-site> install-app fintheme_and_sounds
 bench --site <your-site> migrate
 bench build
 bench restart
@@ -92,7 +92,7 @@ bench restart
 Upgrade later:
 
 ```bash
-cd ~/frappe-bench/apps/finetheme_and_sound
+cd ~/frappe-bench/apps/fintheme_and_sounds
 git pull
 cd ~/frappe-bench
 bench --site <your-site> migrate
@@ -184,20 +184,20 @@ Whitelisted Python entry points — callable from JS or REST.
 
 ```python
 # Theme — read + write
-finetheme_and_sound.api.get_available_themes()                       # → {defaults, owned, public}
-finetheme_and_sound.api.get_active_theme()                           # → {theme, overrides}
-finetheme_and_sound.api.set_active_theme(theme_name, overrides=None) # apply a theme
-finetheme_and_sound.api.save_custom_theme(payload, share_public=0)   # create/update a theme
-finetheme_and_sound.api.delete_custom_theme(theme_name)
-finetheme_and_sound.api.clear_active_theme()                         # back to Frappe stock
-finetheme_and_sound.api.get_recommended_palettes()                   # the 8 curated palettes
+fintheme_and_sounds.api.get_available_themes()                       # → {defaults, owned, public}
+fintheme_and_sounds.api.get_active_theme()                           # → {theme, overrides}
+fintheme_and_sounds.api.set_active_theme(theme_name, overrides=None) # apply a theme
+fintheme_and_sounds.api.save_custom_theme(payload, share_public=0)   # create/update a theme
+fintheme_and_sounds.api.delete_custom_theme(theme_name)
+fintheme_and_sounds.api.clear_active_theme()                         # back to Frappe stock
+fintheme_and_sounds.api.get_recommended_palettes()                   # the 8 curated palettes
 
 # Sounds — read + write
-finetheme_and_sound.api.get_user_sounds()                            # → {enabled, mapping}
-finetheme_and_sound.api.set_user_sound(event_key, file_url, volume=0.5)
-finetheme_and_sound.api.clear_user_sound(event_key)
-finetheme_and_sound.api.toggle_user_sounds(enabled)                  # 0/1 master switch
-finetheme_and_sound.api.clear_all_user_sounds()
+fintheme_and_sounds.api.get_user_sounds()                            # → {enabled, mapping}
+fintheme_and_sounds.api.set_user_sound(event_key, file_url, volume=0.5)
+fintheme_and_sounds.api.clear_user_sound(event_key)
+fintheme_and_sounds.api.toggle_user_sounds(enabled)                  # 0/1 master switch
+fintheme_and_sounds.api.clear_all_user_sounds()
 ```
 
 All endpoints respect Frappe's permission system and invalidate the per-user `bootinfo` cache on write, so the **next page load** picks up the change without a `bench restart`.
@@ -215,7 +215,7 @@ SoundManager.applyMapping({ login: { url: "/files/my.mp3", volume: 0.6 } });
 SoundManager.setEnabled(true);
 ```
 
-The full sound playback pipeline (event → audio element → 3-second cap → volume) is wired in [`sound_manager.js`](finetheme_and_sound/public/js/sound_manager.js); the editor UI is in [`sound_studio.js`](finetheme_and_sound/public/js/sound_studio.js).
+The full sound playback pipeline (event → audio element → 3-second cap → volume) is wired in [`sound_manager.js`](fintheme_and_sounds/public/js/sound_manager.js); the editor UI is in [`sound_studio.js`](fintheme_and_sounds/public/js/sound_studio.js).
 
 ---
 
@@ -240,7 +240,7 @@ The full sound playback pipeline (event → audio element → 3-second cap → v
 
 ## Sounds
 
-Every bundled sound in [`finetheme_and_sound/public/sounds/`](finetheme_and_sound/public/sounds/) is an **original tone synthesised from scratch** by [`tools/generate_sounds.py`](tools/generate_sounds.py) using only the Python standard library — no recordings, no samples, no third-party audio. There are 36 files: 12 Desk events × 3 presets each, with preset 1 of every event registered as the default.
+Every bundled sound in [`fintheme_and_sounds/public/sounds/`](fintheme_and_sounds/public/sounds/) is an **original tone synthesised from scratch** by [`tools/generate_sounds.py`](tools/generate_sounds.py) using only the Python standard library — no recordings, no samples, no third-party audio. There are 36 files: 12 Desk events × 3 presets each, with preset 1 of every event registered as the default.
 
 To retune or regenerate them, edit the recipes in `tools/generate_sounds.py` and run:
 

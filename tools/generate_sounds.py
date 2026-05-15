@@ -10,7 +10,7 @@ Run from the app repository root:
 
     python3 tools/generate_sounds.py
 
-Output: finetheme_and_sound/public/sounds/<event>-<n>.wav
+Output: fintheme_and_sounds/public/sounds/<event>-<n>.wav
         12 events x 3 presets = 36 files. Preset 1 of each event is the
         "apt" default used by hooks.py.
 """
@@ -25,7 +25,7 @@ SR = 44100  # sample rate (Hz)
 
 OUT_DIR = os.path.join(
 	os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-	"finetheme_and_sound",
+	"fintheme_and_sounds",
 	"public",
 	"sounds",
 )
